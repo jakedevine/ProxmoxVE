@@ -21,7 +21,15 @@ $STD mv Dispatcharr-${RELEASE} dispatcharr
 $STD rm ${RELEASE}.tar.gz
 cd dispatcharr
 $STD chmod +x debian_install.sh
+# Temporarily disable strict error handling for debian_install.sh
+set +e
 echo "I understand" | ./debian_install.sh
+install_result=$?
+set -e
+if [ $install_result -ne 0 ]; then
+  msg_error "Dispatcharr installation failed"
+  exit 1
+fi
 echo "${RELEASE}" >/opt/Dispatcharr_version.txt
 msg_ok "Installed Dispatcharr"
 
