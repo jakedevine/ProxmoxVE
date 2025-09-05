@@ -23,10 +23,11 @@ $STD mv Dispatcharr-${FOLDER_NAME} dispatcharr
 $STD rm ${RELEASE}.tar.gz
 cd dispatcharr
 $STD chmod +x debian_install.sh
+# Fix indented EOSU marker in clone_dispatcharr_repo function
+sed -i 's/^    EOSU$/EOSU/' debian_install.sh
 # Temporarily disable strict error handling for debian_install.sh
 set +e
-# Run debian_install.sh with environment preserved
-echo "I understand" | bash -c '. ./debian_install.sh'
+echo "I understand" | ./debian_install.sh
 install_result=$?
 set -e
 if [ $install_result -ne 0 ]; then
