@@ -25,7 +25,8 @@ cd dispatcharr
 $STD chmod +x debian_install.sh
 # Temporarily disable strict error handling for debian_install.sh
 set +e
-echo "I understand" | ./debian_install.sh
+# Run debian_install.sh with environment preserved
+echo "I understand" | bash -c '. ./debian_install.sh'
 install_result=$?
 set -e
 if [ $install_result -ne 0 ]; then
