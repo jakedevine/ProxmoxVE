@@ -21,7 +21,7 @@ $STD mv Dispatcharr-${RELEASE} dispatcharr
 $STD rm ${RELEASE}.tar.gz
 cd dispatcharr
 $STD chmod +x debian_install.sh
-$STD ./debian_install.sh
+echo "I understand" | ./debian_install.sh
 echo "${RELEASE}" >/opt/Dispatcharr_version.txt
 msg_ok "Installed Dispatcharr"
 
