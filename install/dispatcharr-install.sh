@@ -15,9 +15,11 @@ update_os
 
 msg_info "Installing Dispatcharr"
 RELEASE=$(curl -s https://api.github.com/repos/Dispatcharr/Dispatcharr/releases/latest | grep "tag_name" | awk '{print substr($2, 2, length($2)-3) }')
+# Remove 'v' prefix from release for folder name
+FOLDER_NAME=${RELEASE#v}
 $STD wget -q https://github.com/Dispatcharr/Dispatcharr/archive/refs/tags/${RELEASE}.tar.gz
 $STD tar -xzf ${RELEASE}.tar.gz
-$STD mv Dispatcharr-${RELEASE} dispatcharr
+$STD mv Dispatcharr-${FOLDER_NAME} dispatcharr
 $STD rm ${RELEASE}.tar.gz
 cd dispatcharr
 $STD chmod +x debian_install.sh
